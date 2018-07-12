@@ -32,6 +32,7 @@ class Blog(models.Model):
     click_nums = models.IntegerField(default=0)
     category = models.ForeignKey(Category)
     tag = models.ManyToManyField(Tag)
+    comments_num = models.IntegerField(default=0)
 
     def __str__(self):
         return self.title
