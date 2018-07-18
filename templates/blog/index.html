@@ -76,8 +76,10 @@
                         <ul>
                             {% for cate in cate_list %}
                             <li>
-                                <a href="/cate_{{ cate }}/">{{ cate }}</a>
+                                <a href="/cate_{{ cate.cate.id }}/">{{ cate.cate.name }}<span class="post-count">({{ cate.cate_blog_num }})</span></a>
                             </li>
+                            {% empty %}
+                            暂无分类！
                             {% endfor %}
                         </ul>
                     </div>
