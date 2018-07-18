@@ -16,9 +16,9 @@ def index(request):
     cursor = connection.cursor()
     cursor.execute('select date_format(create_time, "%Y年%m月") months from blog_blog group by months;')
     time_list = cursor.fetchall()
-<<<<<<< HEAD
+
     return render(request, "blog/index.html", {'articleList': article_list, "new_article_list": new_article_list, "time_list": time_list})
-=======
+
 
     # 分类
     category_list = Category.objects.all()
@@ -40,4 +40,4 @@ def index(request):
 
 
     return render(request, "blog/index.html", content)
->>>>>>> cacbdcdc73eaa8768e500e964810e7a0eb8275cf
+
