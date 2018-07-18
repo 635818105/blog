@@ -1,0 +1,105 @@
+{% extends "blog/index.html" %}
+{% block middle %}
+    <div class="content-body">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8">
+                    {% for article in cate_blog_list %}
+                    <article class="post post-1">
+                        <header class="entry-header">
+                            <h1 class="entry-title">
+                                <a href="single.html">{{ article.title }}</a>
+                            </h1>
+                            <div class="entry-meta">
+                                <span class="post-category"><a href="/full_width_{{ article.id }}/">{{ article.category.name }}</a></span>
+                                <span class="post-date"><a href="#"><time class="entry-date"
+                                                                          datetime="2012-11-09T23:15:57+00:00">{{ article.create_time }}</time></a></span>
+                                <span class="post-author"><a href="/full_width_{{ article.id }}/">zdliang</a></span>
+                                <span class="comments-link"><a href="/full_width_{{ article.id }}/">{{ article.comments_num }} 评论</a></span>
+                                <span class="views-count"><a href="/full_width_{{ article.id }}/">{{ article.click_nums }} 阅读</a></span>
+                            </div>
+                        </header>
+                        <div class="entry-content clearfix">
+                            <p>{{ article.content | truncatechars:"100"}}</p>
+                            <div class="read-more cl-effect-14">
+                                <a href="/full_width_{{ article.id }}/" class="more-link">继续阅读 <span class="meta-nav">→</span></a>
+                            </div>
+                        </div>
+                    </article>
+                    {% empty %}
+                    <div>此分类没有文章!</div>
+                    {% endfor %}
+
+                    <!-- 简单分页效果
+                    <div class="pagination-simple">
+                        <a href="#">上一页</a>
+                        <span class="current">第 6 页 / 共 11 页</span>
+                        <a href="#">下一页</a>
+                    </div>
+                    -->
+                    <div class="pagination">
+                        <ul>
+                            <li><a href="">1</a></li>
+                            <li><a href="">...</a></li>
+                            <li><a href="">4</a></li>
+                            <li><a href="">5</a></li>
+                            <li class="current"><a href="">6</a></li>
+                            <li><a href="">7</a></li>
+                            <li><a href="">8</a></li>
+                            <li><a href="">...</a></li>
+                            <li><a href="">11</a></li>
+                        </ul>
+                    </div>
+                </main>
+                <aside class="col-md-4">
+{#                    <div class="widget widget-recent-posts">#}
+{#                        <h3 class="widget-title">最新文章</h3>#}
+{#                        <ul>#}
+{#                            {% for new_article in new_article_list %}#}
+{#                            <li>#}
+{#                                <a href="/full_width_{{ new_article.id }}/">{{ new_article.title }}</a>#}
+{#                            </li>#}
+{#                            {% endfor %}#}
+{#                        </ul>#}
+{#                    </div>#}
+                    <div class="widget widget-archives">
+                        <h3 class="widget-title">归档</h3>
+                        <ul>
+                            {% for time in time_list %}
+                            <li>
+                                <a href="/time_{{ time.0 }}/">{{ time.0 }}</a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+
+                    <div class="widget widget-category">
+                        <h3 class="widget-title">分类</h3>
+                        <ul>
+                            <li>
+                                <a href="/cate_{{ cate.id }}/">{{ cate.name }}<span class="post-count">({{ cate_blog_num }})</span></a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="widget widget-tag-cloud">
+                        <h3 class="widget-title">标签云</h3>
+                        <ul>
+                            {% for tag in tag_list %}
+                            <li>
+                                <a href="#">{{ tag.name }}</a>
+                            </li>
+                            {% empty %}
+                            <div>暂时没有标签!</div>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="rss">
+                        <a href=""><span class="ion-social-rss-outline"></span> RSS 订阅</a>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
