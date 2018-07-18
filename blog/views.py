@@ -11,5 +11,4 @@ def index(request):
     cursor = connection.cursor()
     cursor.execute('select date_format(create_time, "%Y年%m月") months from blog_blog group by months;')
     time_list = cursor.fetchall()
-    # time_list = Blog.objects.raw(r'-- select date_format(create_time, "%Y年%m月") months from blog_blog group by months;')
     return render(request, "blog/index.html", {'articleList': article_list, "new_article_list": new_article_list, "time_list": time_list})
