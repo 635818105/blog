@@ -8,21 +8,21 @@
                     <article class="post post-1">
                         <header class="entry-header">
                             <h1 class="entry-title">
-                                <a href="single.html">{{ article.title }}</a>
+                                <a href="/detail_{{ article.id }}/">{{ article.title }}</a>
                             </h1>
                             <div class="entry-meta">
-                                <span class="post-category"><a href="/full_width/">{{ article.category.name }}</a></span>
+                                <span class="post-category"><a href="/cate_{{ article.category.id }}/">{{ article.category.name }}</a></span>
                                 <span class="post-date"><a href="#"><time class="entry-date"
                                                                           datetime="2012-11-09T23:15:57+00:00">{{ article.create_time }}</time></a></span>
-                                <span class="post-author"><a href="/full_width_{{ article.id }}/">zdliang</a></span>
-                                <span class="comments-link"><a href="/full_width_{{ article.id }}/">{{ article.comments_num }} 评论</a></span>
-                                <span class="views-count"><a href="/full_width_{{ article.id }}/">{{ article.click_nums }} 阅读</a></span>
+                                <span class="post-author"><a href="/detail_{{ article.id }}/">zdliang</a></span>
+                                <span class="comments-link"><a href="/detail_{{ article.id }}/">{{ article.comments_num }} 评论</a></span>
+                                <span class="views-count"><a href="/detail_{{ article.id }}/">{{ article.click_nums }} 阅读</a></span>
                             </div>
                         </header>
                         <div class="entry-content clearfix">
                             <p>{{ article.content | truncatechars:"100"}}</p>
                             <div class="read-more cl-effect-14">
-                                <a href="/full_width_{{ article.id }}/" class="more-link">继续阅读 <span class="meta-nav">→</span></a>
+                                <a href="/detail_{{ article.id }}/" class="more-link">继续阅读 <span class="meta-nav">→</span></a>
                             </div>
                         </div>
                     </article>
@@ -55,7 +55,7 @@
                         <ul>
                             {% for new_article in new_article_list %}
                             <li>
-                                <a href="/full_width_{{ new_article.id }}/">{{ new_article.title }}</a>
+                                <a href="/detail_{{ new_article.id }}/">{{ new_article.title }}</a>
                             </li>
                             {% endfor %}
                         </ul>
