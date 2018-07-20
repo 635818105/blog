@@ -105,9 +105,13 @@ def detail(request, article_id):
 def time_handle(request, time):
     """归档"""
 
-    year = re.match(r"(\d+)年", time)
-    month = re.match(r"年(\d+)月", time)
-    blog = Blog.objects.filter(create_time__year=year, create_time__month=month).all()
+    year = re.match(r"(\d+)年", time).group(1)
+    month = re.search(r"年(\d+)月", time).group(1)
+    blog = Blog.objects.filter(create_time__exact=time).all()
+    log_sql = connection.queries
+    print(log_sql)
+    content = {
+        "blog": blog
+    }
 
-
-    return None
+    return render(request, "blog/index.html", content)
