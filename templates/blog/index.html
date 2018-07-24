@@ -4,28 +4,32 @@
         <div class="container">
             <div class="row">
                 <main class="col-md-8">
-                    {% for article in articleList %}
-                    <article class="post post-1">
-                        <header class="entry-header">
-                            <h1 class="entry-title">
-                                <a href="/detail_{{ article.id }}/">{{ article.title }}</a>
-                            </h1>
-                            <div class="entry-meta">
-                                <span class="post-category"><a href="/cate_{{ article.category.id }}/">{{ article.category.name }}</a></span>
-                                <span class="post-date"><a href="#"><time class="entry-date"
-                                                                          datetime="2012-11-09T23:15:57+00:00">{{ article.create_time }}</time></a></span>
-                                <span class="post-author"><a href="/detail_{{ article.id }}/">zdliang</a></span>
-                                <span class="comments-link"><a href="/detail_{{ article.id }}/">{{ article.comments_num }} 评论</a></span>
-                                <span class="views-count"><a href="/detail_{{ article.id }}/">{{ article.click_nums }} 阅读</a></span>
+                    {% for article in page %}
+                        <article class="post post-1">
+                            <header class="entry-header">
+                                <h1 class="entry-title">
+                                    <a href="/detail_{{ article.id }}/">{{ article.title }}</a>
+                                </h1>
+                                <div class="entry-meta">
+                                    <span class="post-category"><a
+                                            href="/cate_{{ article.category.id }}/">{{ article.category.name }}</a></span>
+                                    <span class="post-date"><a href="#"><time class="entry-date"
+                                                                              datetime="2012-11-09T23:15:57+00:00">{{ article.create_time }}</time></a></span>
+                                    <span class="post-author"><a href="/detail_{{ article.id }}/">zdliang</a></span>
+                                    <span class="comments-link"><a
+                                            href="/detail_{{ article.id }}/">{{ article.comments_num }} 评论</a></span>
+                                    <span class="views-count"><a
+                                            href="/detail_{{ article.id }}/">{{ article.click_nums }} 阅读</a></span>
+                                </div>
+                            </header>
+                            <div class="entry-content clearfix">
+                                <p>{{ article.content | truncatechars:"100" }}</p>
+                                <div class="read-more cl-effect-14">
+                                    <a href="/detail_{{ article.id }}/" class="more-link">继续阅读 <span
+                                            class="meta-nav">→</span></a>
+                                </div>
                             </div>
-                        </header>
-                        <div class="entry-content clearfix">
-                            <p>{{ article.content | truncatechars:"100"}}</p>
-                            <div class="read-more cl-effect-14">
-                                <a href="/detail_{{ article.id }}/" class="more-link">继续阅读 <span class="meta-nav">→</span></a>
-                            </div>
-                        </div>
-                    </article>
+                        </article>
                     {% endfor %}
 
                     <!-- 简单分页效果
@@ -37,15 +41,22 @@
                     -->
                     <div class="pagination">
                         <ul>
-                            <li><a href="">1</a></li>
-                            <li><a href="">...</a></li>
-                            <li><a href="">4</a></li>
-                            <li><a href="">5</a></li>
-                            <li class="current"><a href="">6</a></li>
-                            <li><a href="">7</a></li>
-                            <li><a href="">8</a></li>
-                            <li><a href="">...</a></li>
-                            <li><a href="">11</a></li>
+                            <li><a href="/index_1/">首页</a></li>
+                            {% if page.has_previous %}
+                                <li><a href="/index_{{ page.previous_page_number }}">上一页</a></li>
+                            {% endif %}
+                            {% for num in page.paginator.page_range %}
+                                {% if page.number == num %}
+                                    <li><a style="color: red" href="/index_{{ num }}">{{ num }}</a></li>
+                                {% else %}
+                                    <li><a href="/index_{{ num }}">{{ num }}</a></li>
+                                {% endif %}
+                            {% endfor %}
+                            {% if page.has_next %}
+                                <li><a href="/index_{{ page.next_page_number }}">下一页</a></li>
+                            {% endif %}
+                            <li><a href="/index_{{ page.paginator.num_pages }}">尾页</a></li>
+                        </ul>
                         </ul>
                     </div>
                 </main>
@@ -54,9 +65,9 @@
                         <h3 class="widget-title">最新文章</h3>
                         <ul>
                             {% for new_article in new_article_list %}
-                            <li>
-                                <a href="/detail_{{ new_article.id }}/">{{ new_article.title }}</a>
-                            </li>
+                                <li>
+                                    <a href="/detail_{{ new_article.id }}/">{{ new_article.title }}</a>
+                                </li>
                             {% endfor %}
                         </ul>
                     </div>
@@ -64,9 +75,9 @@
                         <h3 class="widget-title">归档</h3>
                         <ul>
                             {% for time in time_list %}
-                            <li>
-                                <a href="/time_{{ time.0 }}/">{{ time.0 }}</a>
-                            </li>
+                                <li>
+                                    <a href="/time_{{ time.0 }}/">{{ time.0 }}</a>
+                                </li>
                             {% endfor %}
                         </ul>
                     </div>
@@ -75,11 +86,12 @@
                         <h3 class="widget-title">分类</h3>
                         <ul>
                             {% for cate in cate_list %}
-                            <li>
-                                <a href="/cate_{{ cate.cate.id }}/">{{ cate.cate.name }}<span class="post-count">({{ cate.cate_blog_num }})</span></a>
-                            </li>
+                                <li>
+                                    <a href="/cate_{{ cate.cate.id }}_1/">{{ cate.cate.name }}<span
+                                            class="post-count">({{ cate.cate_blog_num }})</span></a>
+                                </li>
                             {% empty %}
-                            暂无分类！
+                                暂无分类！
                             {% endfor %}
                         </ul>
                     </div>
@@ -88,9 +100,9 @@
                         <h3 class="widget-title">标签云</h3>
                         <ul>
                             {% for tag in tag_list %}
-                            <li>
-                                <a href="#">{{ tag.name }}</a>
-                            </li>
+                                <li>
+                                    <a href="#">{{ tag.name }}</a>
+                                </li>
                             {% endfor %}
                         </ul>
                     </div>

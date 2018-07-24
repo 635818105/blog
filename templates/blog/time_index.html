@@ -4,14 +4,14 @@
         <div class="container">
             <div class="row">
                 <main class="col-md-8">
-                    {% for article in page %}
+                    {% for article in blog_list %}
                     <article class="post post-1">
                         <header class="entry-header">
                             <h1 class="entry-title">
                                 <a href="/detail_{{ article.id }}/">{{ article.title }}</a>
                             </h1>
                             <div class="entry-meta">
-                                <span class="post-category"><a href="/cate_{{ article.category.id }}_1/">{{ article.category.name }}</a></span>
+                                <span class="post-category"><a href="/cate_{{ article.category.id }}/">{{ article.category.name }}</a></span>
                                 <span class="post-date"><a href="#"><time class="entry-date"
                                                                           datetime="2012-11-09T23:15:57+00:00">{{ article.create_time }}</time></a></span>
                                 <span class="post-author"><a href="/detail_{{ article.id }}/">zdliang</a></span>
@@ -37,9 +37,9 @@
                     -->
                     <div class="pagination">
                         <ul>
-                            <li><a href="/cate_{{ current_type.id }}_1/">首页</a></li>
+                            <li><a href="/time_{{ time.0 }}_1/">首页</a></li>
                             {% if page.has_previous %}
-                                <li><a href="/cate_{{ current_type.id }}_{{ page.previous_page_number }}">上一页</a></li>
+                                <li><a href="/index_{{ page.previous_page_number }}">上一页</a></li>
                             {% endif %}
                             {% for num in page.paginator.page_range %}
                                 {% if page.number == num %}
@@ -49,9 +49,9 @@
                                 {% endif %}
                             {% endfor %}
                             {% if page.has_next %}
-                                <li><a href="/cate_{{ current_type.id }}_{{ page.next_page_number }}">下一页</a></li>
+                                <li><a href="/index_{{ page.next_page_number }}">下一页</a></li>
                             {% endif %}
-                            <li><a href="/cate_{{ current_type.id }}_{{ page.paginator.num_pages }}">尾页</a></li>
+                            <li><a href="/index_{{ page.paginator.num_pages }}">尾页</a></li>
                         </ul>
                         </ul>
                     </div>
@@ -72,7 +72,7 @@
                         <ul>
                             {% for time in time_list %}
                             <li>
-                                <a href="/time_{{ time.0 }}/">{{ time.0 }}</a>
+                                <a href="/time_{{ time.0 }}?current_page=1/">{{ time.0 }}</a>
                             </li>
                             {% endfor %}
                         </ul>
@@ -83,7 +83,7 @@
                         <ul>
                             {% for cate in cate_list %}
                             <li>
-                                <a href="/cate_{{ cate.cate.id }}_1/">{{ cate.cate.name }}<span class="post-count">({{ cate.cate_blog_num }})</span></a>
+                                <a href="/cate_{{ cate.cate.id }}/">{{ cate.cate.name }}<span class="post-count">({{ cate.cate_blog_num }})</span></a>
                             </li>
                             {% empty %}
                             暂无分类！

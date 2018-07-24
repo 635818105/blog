@@ -18,9 +18,9 @@ from django.conf.urls import url
 from blog import views
 
 urlpatterns = [
-    url(r'^index/$', views.index),
-    url(r'^$', views.index),
-    url(r'^cate_(\d+)/$', views.cate_handle),
+    url(r'^index_(\d+)/$', views.index),
+    url(r'^$', views.index1),
+    url(r'^cate_(\d+)_(\d+)/$', views.cate_handle),
     url(r'^detail_(\d+)/$', views.detail),
     url(r'^time_(.*)/$', views.time_handle),
 ]
