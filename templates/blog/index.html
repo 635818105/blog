@@ -23,7 +23,7 @@
                                 </div>
                             </header>
                             <div class="entry-content clearfix">
-                                <p>{{ article.content | truncatechars:"100" }}</p>
+                                <p>{{ article.content | truncatechars:"100" | safe }}</p>
                                 <div class="read-more cl-effect-14">
                                     <a href="/detail_{{ article.id }}/" class="more-link">继续阅读 <span
                                             class="meta-nav">→</span></a>
@@ -76,7 +76,7 @@
                         <ul>
                             {% for time in time_list %}
                                 <li>
-                                    <a href="/time_{{ time.0 }}/">{{ time.0 }}</a>
+                                    <a href="/time_{{ time.0 }}/?page=1">{{ time.0 }}</a>
                                 </li>
                             {% endfor %}
                         </ul>

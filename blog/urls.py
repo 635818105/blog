@@ -23,4 +23,6 @@ urlpatterns = [
     url(r'^cate_(\d+)_(\d+)/$', views.cate_handle),
     url(r'^detail_(\d+)/$', views.detail),
     url(r'^time_(.*)/$', views.time_handle),
+    url(r'^about/$', views.about_me),
+    url(r'^contact/$', views.contact),
 ]
