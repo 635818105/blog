@@ -25,4 +25,5 @@ urlpatterns = [
     url(r'^time_(.*)/$', views.time_handle),
     url(r'^about/$', views.about_me),
     url(r'^contact/$', views.contact),
+    url(r'^send_message/$', views.send_message),
 ]

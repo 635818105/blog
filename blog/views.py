@@ -1,11 +1,12 @@
+import datetime
 import re
 
 import markdown
+import time
 from django.core.paginator import Paginator
 from django.db import connection
 from django.shortcuts import render, redirect
-from blog.models import Blog, Category, Tag
-
+from blog.models import Blog, Category, Tag, Message
 
 # Create your views here.
 from comments.models import Comment
@@ -156,3 +157,35 @@ def about_me(request):
 
 def contact(request):
     return render(request, "blog/contact.html")
+
+
+def send_mail(request):
+
+    try:
+        if request.method == "POST":
+            data = request.POST
+            name = data.get("name")
+            email = data.get("email")
+            subject = data.get("subject")
+            content = data.get("content")
+            if name and email and subject and content:
+                Message.objects.create(
+                    name=name,
+                    create_time=datetime.datetime,
+                    email=email,
+                    subject=subject,
+                    content=content
+                )
+                message = "Message Send Successfully"
+            else:
+                message = "Message Failed To Send"
+
+            content = {
+                "message": message
+            }
+            return render(request, "tip.html", content)
+    except Exception as e:
+        print(e)
+
+
+
