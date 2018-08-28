@@ -14,6 +14,8 @@ def comments(request, blog_id):
         comment_url = request.POST.get("url")
         comment_text = request.POST.get("comment")
         comment_blog = Blog.objects.get(id=blog_id)
+        comment_blog.comments_num += 1
+        comment_blog.save()
 
         comment = Comment()
         comment.name = comment_name
@@ -21,6 +23,7 @@ def comments(request, blog_id):
         comment.url = comment_url
         comment.text = comment_text
         comment.blog = comment_blog
+
         comment.save()
         return redirect("/detail_%s" % blog_id)
     else:

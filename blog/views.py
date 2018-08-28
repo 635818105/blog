@@ -159,7 +159,7 @@ def contact(request):
     return render(request, "blog/contact.html")
 
 
-def send_mail(request):
+def send_message(request):
 
     try:
         if request.method == "POST":
