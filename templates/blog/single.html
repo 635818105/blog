@@ -97,7 +97,7 @@
                     <ul>
                         {% for time in time_list %}
                         <li>
-                            <a href="time_{{ time.0 }}/?page=1">{{ time.0 }}</a>
+                            <a href="/time_{{ time.0 }}/?page=1">{{ time.0 }}</a>
                         </li>
                         {% endfor %}
                     </ul>
@@ -108,7 +108,7 @@
                     <ul>
                         {% for data in cate_list %}
                         <li>
-                            <a href="cate_{{ data.cate.id }}">{{ data.cate }}<span class="post-count">({{ data.cate_blog_num }})</span></a>
+                            <a href="/cate_{{ data.cate.id }}_1/">{{ data.cate }}<span class="post-count">({{ data.cate_blog_num }})</span></a>
                         </li>
                         {% endfor %}
                     </ul>
