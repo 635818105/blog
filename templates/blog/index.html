@@ -60,7 +60,7 @@
                         </ul>
                     </div>
                 </main>
-                <aside class="col-md-4">
+                <aside class="col-md-4" style="border-left:1px solid #e7e7e7;">
                     <div class="widget widget-recent-posts">
                         <h3 class="widget-title">最新文章</h3>
                         <ul>
@@ -98,7 +98,7 @@
 
                     <div class="widget widget-tag-cloud">
                         <h3 class="widget-title">标签云</h3>
-                        <ul>
+                        <ul style="width: 240px">
                             {% for tag in tag_list %}
                                 <li>
                                     <a href="#">{{ tag.name }}</a>
