@@ -121,8 +121,8 @@ def time_handle(request, time):
     current_page = request.GET.get("page")
     year = re.match(r"(\d+)年", time).group(1)
     month = re.search(r"年(\d+)月", time).group(1)
-    blog_list = Blog.objects.filter(create_time__year=year, create_time__month=month).all().order_by("-create_time")
-    # blog_list = Blog.objects.filter(create_time__startswith="{}-{}".format(year, month)).all()
+    # blog_list = Blog.objects.filter(create_time__year=year, create_time__month=month).all().order_by("-create_time")
+    blog_list = Blog.objects.filter(create_time__startswith="{}-{}".format(year, month)).all().order_by("-create_time")
 
     new_article_list, time_list, cate_list = base_data()
 
