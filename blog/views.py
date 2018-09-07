@@ -32,7 +32,7 @@ def base_data():
     return new_article_list, time_list, cate_list
 
 
-def index(request, current_page):
+def index(request, current_page=1):
     """主页逻辑"""
 
     article_list = Blog.objects.all().order_by("-create_time")
@@ -147,8 +147,8 @@ def time_handle(request, time):
     return render(request, "blog/time_index.html", content)
 
 
-def index1(request):
-    return redirect('/index_1/')
+# def index1(request):
+#     return redirect('/index_1/')
 
 
 def about_me(request):
