@@ -25,6 +25,5 @@ urlpatterns = [
     url(r'^about/$', views.about_me),
     url(r'^contact/$', views.contact),
     url(r'^send_message/$', views.send_message),
-    url(r'^zzd/$', views.zz),
     url(r'^$', views.index),
 ]

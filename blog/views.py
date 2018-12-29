@@ -147,10 +147,6 @@ def time_handle(request, time):
     return render(request, "blog/time_index.html", content)
 
 
-#def index1(request):
-#    return redirect('/index_1/')
-
-
 def about_me(request):
     return render(request, "blog/about.html")
 
