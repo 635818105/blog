@@ -80,7 +80,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'blog',
-        'HOST': 'localhost',
+        'HOST': '127.0.0.1',
         'USER': 'root',
         'PASSWORD': '1993923',
         'PORT': 3306
@@ -126,4 +126,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 # STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
-STATIC_ROOT =  "/var/www/blog/static/"
+STATIC_ROOT = "/var/www/blog/static/"

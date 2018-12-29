@@ -19,11 +19,12 @@ from blog import views
 
 urlpatterns = [
     url(r'^index_(\d+)/$', views.index),
-    url(r'^$', views.index1),
     url(r'^cate_(\d+)_(\d+)/$', views.cate_handle),
     url(r'^detail_(\d+)/$', views.detail),
     url(r'^time_(.*)/$', views.time_handle),
     url(r'^about/$', views.about_me),
     url(r'^contact/$', views.contact),
     url(r'^send_message/$', views.send_message),
+    url(r'^zzd/$', views.zz),
+    url(r'^$', views.index),
 ]
